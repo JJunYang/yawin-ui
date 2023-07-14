@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# 手动配置 lint-staged
+# 解决lint-staged执行不一致问题
+# https://github.com/typicode/husky/issues/968#issuecomment-1176848345
+exec >/dev/tty 2>&1
+
+npm run pre-commit
