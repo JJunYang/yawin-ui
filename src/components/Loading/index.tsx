@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './index.less';
 
 interface LoadingProps {
   color?: string;
@@ -9,6 +8,7 @@ interface LoadingProps {
 }
 
 const Loading: React.FC<LoadingProps> = React.memo((props) => {
+  const classPrefix = 'y';
   const { color = '#1C61EA', size = 16, rotatePeriod = 1, style = {} } = props;
 
   const newStyle = {
@@ -19,8 +19,8 @@ const Loading: React.FC<LoadingProps> = React.memo((props) => {
     ...style,
   };
   return (
-    <div className={styles.container} style={newStyle}>
-      <div className={styles.loading} />
+    <div className={`${classPrefix}-container`} style={newStyle}>
+      <div className={`${classPrefix}-loading`} />
     </div>
   );
 });

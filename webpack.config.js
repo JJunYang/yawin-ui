@@ -1,16 +1,17 @@
 const webpack = require('webpack');
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = {
+  mode: 'production',
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'bundle.js',
+    library: 'yawin',
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
   },
   module: {
     rules: [
@@ -24,15 +25,7 @@ const config = {
         use: [
           // 'style-loader',
           MiniCssExtractPlugin.loader, // css 提取成单独打包文件
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[local]__[hash:base64:5]', // 添加哈希值作为类名
-              },
-            },
-          },
-          ,
+          'css-loader',
           'less-loader',
         ],
       },
@@ -43,28 +36,13 @@ const config = {
       },
     ],
   },
-  plugins: [
-    // 用于在build完成之后复制静态文件如图片等
-    new CopyPlugin({
-      patterns: [{ from: 'src/index.tsx' }],
-    }),
-    new HtmlWebpackPlugin({
-      title: 'React-app-template',
-      templateContent: ({ htmlWebpackPlugin }) =>
-        '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
-        htmlWebpackPlugin.options.title +
-        '</title></head><body><div id="root"></div></body></html>',
-      filename: 'index.html',
-    }),
-    new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
-    }),
-    new MiniCssExtractPlugin({ filename: 'css/[name].[hash].css' }),
-  ],
+  plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin({ filename: 'css/index.css' })],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDom',
   },
 };
 
