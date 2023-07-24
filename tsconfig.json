@@ -6,14 +6,15 @@
     "moduleResolution": "node",
     "types": ["./typings.d.ts"],
     "allowJs": true,
-    "outDir": "./dist",
+    "outDir": "es",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "declaration": true
   },
   "include": ["src"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**", "dist", "es"]
 }

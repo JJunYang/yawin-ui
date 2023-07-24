@@ -1,4 +1,6 @@
 node_modules
 dist
+es
 .eslintrc.js
 webpack.config.js
+rollup.config.js

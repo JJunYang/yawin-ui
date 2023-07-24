@@ -8,7 +8,7 @@ interface LoadingProps {
 }
 
 const Loading: React.FC<LoadingProps> = React.memo((props) => {
-  const classPrefix = 'y';
+  const classPrefix = 'y-loading';
   const { color = '#1C61EA', size = 16, rotatePeriod = 1, style = {} } = props;
 
   const newStyle = {
@@ -20,7 +20,7 @@ const Loading: React.FC<LoadingProps> = React.memo((props) => {
   };
   return (
     <div className={`${classPrefix}-container`} style={newStyle}>
-      <div className={`${classPrefix}-loading`} />
+      <div className={`${classPrefix}-spin`} />
     </div>
   );
 });
