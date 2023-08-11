@@ -7,7 +7,7 @@
   "main": "es/index.js",
   "unpkg": "dist/yawin.min.js",
   "module": "es/index.js",
-  "typings": "es/index.d.ts",
+  "types": "es/index.d.ts",
   "files": [
     "es"
   ],
