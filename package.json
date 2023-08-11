@@ -12,13 +12,14 @@
     "es"
   ],
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "npm run roll && npm run webpack",
     "clean": "rm dist -r",
     "lint": "eslint --fix",
     "pre-commit": "lint-staged",
     "prepare": "husky install",
     "prettier": "prettier --cache --write ./src",
-    "roll": "rollup -c"
+    "roll": "rollup -c",
+    "webpack": "webpack --config webpack.config.js"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
