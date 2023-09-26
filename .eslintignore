@@ -1,6 +1,8 @@
 node_modules
 dist
 es
+lib
 .eslintrc.js
 webpack.config.js
 rollup.config.js
+gulpfile.js
