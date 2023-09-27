@@ -9,18 +9,19 @@
   "module": "es/index.js",
   "types": "es/index.d.ts",
   "files": [
+    "dist",
+    "lib",
     "es"
   ],
   "scripts": {
-    "build": "npm run roll && npm run webpack",
+    "build": "npm run build:lib && npm run build:dist",
+    "build:dist": "webpack --config webpack.config.js",
     "build:lib": "gulp compile",
     "clean": "rm dist -r",
     "lint": "eslint --fix",
     "pre-commit": "lint-staged",
     "prepare": "husky install",
-    "prettier": "prettier --cache --write ./src",
-    "roll": "rollup -c",
-    "webpack": "webpack --config webpack.config.js"
+    "prettier": "prettier --cache --write ./src"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx,js,jsx}": [
@@ -38,13 +39,6 @@
     "@babel/preset-react": "^7.22.5",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
-    "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^25.0.3",
-    "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-multi-entry": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@rollup/plugin-typescript": "^11.1.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
@@ -59,6 +53,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
+    "gulp-less": "^5.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "html-webpack-plugin": "^5.5.3",
     "husky": "^8.0.3",
@@ -70,9 +65,6 @@
     "prettier": "^2.8.8",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
-    "rollup": "^3.26.3",
-    "rollup-plugin-less": "^1.1.3",
-    "rollup-plugin-postcss": "^4.0.2",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.3",

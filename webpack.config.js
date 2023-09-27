@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -23,7 +22,6 @@ const config = {
       {
         test: /\.less$/,
         use: [
-          // 'style-loader',
           MiniCssExtractPlugin.loader, // css 提取成单独打包文件
           'css-loader',
           'less-loader',
@@ -31,12 +29,25 @@ const config = {
       },
       {
         test: /\.ts(x)?$/,
-        loader: 'ts-loader',
+        use: [
+          { loader: 'babel-loader' },
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: false,
+              appendTsSuffixTo: [],
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin({ filename: 'css/index.css' })],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: 'yawin.min.css' }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', 'jsx'],
   },
